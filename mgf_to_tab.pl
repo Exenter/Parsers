@@ -25,37 +25,38 @@ $tag2 = $ARGV[2];
 $tag3 = $ARGV[3];
 $tag4 = $ARGV[4];
 
-# init a counter to 0, use it to increment spectre name
+# init a counter to 0, use it to increment spectre name ..
 $cpt = 0;
 
+# open files ..
 open (OUTPUT, '>', "parsed_mgf.txt");
 open (FILE, '<', "$file_name") or die "$file_name isn't in this file !\n";
 
-# writing header
+# writing header ..
 print OUTPUT "Spectre\t$tag1\t$tag2\t$tag3\t$tag4\n";
 
-# parsing file
+# parsing file ..
 while(<FILE>)
 {
 
     $line = $_;
-    @temp = split(/\s+/, $line);
+    @temp = split(/\s+/, $line); # split line using space as a delimiter, store as a list
 
     if (substr($line,0,5) eq 'BEGIN')
     {        
         $cpt++;
         $spectre = "Spectre_$cpt";
-        $intensity1 = "NA";
+        $intensity1 = "NA";	# init intensities to NA so R understands there is no value
         $intensity2 = "NA";
         $intensity3 = "NA";
         $intensity4 = "NA";
     }
 
-    if ($temp[0] > $tag1-0.06 )
+    if ($temp[0] > $tag1-0.06 ) # give a range of +/- 0.05
     {
         if ($temp[0] < $tag1+0.06)
         {
-            if ($tag1-$temp[0] < $tag1-$intensity1)
+            if ($tag1-$temp[0] < $tag1-$intensity1) # minimise the diff betwen what we found and what we want
             {
                 $intensity1 = $temp[1];
             }
@@ -99,7 +100,7 @@ while(<FILE>)
         }
     }
 
-    if (substr($line,0,3) eq 'END')
+    if (substr($line,0,3) eq 'END') # end = end of actual spectre = we can write down the infos
     {
         print OUTPUT "$spectre\t$intensity1\t$intensity2\t$intensity3\t$intensity4\n";
     }    
