@@ -50,7 +50,7 @@ while(<FILE>)
     {
         if ($temp[0] < $tag1+0.06)
         {
-            if ($temp[1] > $intensity1)
+            if ($tag1-$temp[0] < $tag1-$intensity1)
             {
                 $intensity1 = $temp[1];
             }
@@ -62,7 +62,7 @@ while(<FILE>)
     {
         if ($temp[0] < $tag2+0.06)
         {
-            if ($temp[1] > $intensity2)
+            if ($tag2-$temp[1] < $tag2-$intensity2)
             {
                 $intensity2 = $temp[1];
             }
@@ -74,7 +74,7 @@ while(<FILE>)
     {
         if ($temp[0] < $tag3+0.06)
         {
-            if ($temp[1] > $intensity3)
+            if ($tag3-$temp[1] < $tag3-$intensity3)
             {
                 $intensity3 = $temp[1];
             }
@@ -86,7 +86,7 @@ while(<FILE>)
     {
         if ($temp[0] < $tag4+0.06)
         {
-            if ($temp[1] > $intensity4)
+            if ($tag4-$temp[1] < $tag4-$intensity4)
             {
                 $intensity4 = $temp[1];
             }
