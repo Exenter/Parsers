@@ -14,7 +14,8 @@ my @tag4;
 my @cpt;
 my @file_name;
 
-# ----- This parser takes as arguments a file name and 1 to 4 tags to search in the given mgf file.
+# ----- This parser takes as arguments a file name and 1 to 4 tags to search in the given mgf file
+# -- could be improved with a loop to use a given number of tags
 
 
 # gather tags and file name
@@ -30,11 +31,15 @@ $cpt = 0;
 open (OUTPUT, '>', "parsed_mgf.txt");
 open (FILE, '<', "$file_name") or die "$file_name isn't in this file !\n";
 
+# writing header
+print OUTPUT "Spectre\t$tag1\t$tag2\t$tag3\t$tag4\n";
+
+# parsing file
 while(<FILE>)
 {
 
     $line = $_;
-    @temp = split(/\s+/, $line); #on utilise le diviseur espace
+    @temp = split(/\s+/, $line);
 
     if (substr($line,0,5) eq 'BEGIN')
     {        
