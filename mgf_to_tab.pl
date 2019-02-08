@@ -45,10 +45,10 @@ while(<FILE>)
     {        
         $cpt++;
         $spectre = "Spectre_$cpt";
-        $intensity1 = 0;
-        $intensity2 = 0;
-        $intensity3 = 0;
-        $intensity4 = 0;
+        $intensity1 = "NA";
+        $intensity2 = "NA";
+        $intensity3 = "NA";
+        $intensity4 = "NA";
     }
 
     if ($temp[0] > $tag1-0.06 )
